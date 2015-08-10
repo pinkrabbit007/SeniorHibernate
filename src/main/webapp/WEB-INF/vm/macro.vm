@@ -1,0 +1,12 @@
+#macro ( showType $id $types )
+	#foreach($type in $types)
+		#if ($id == $type.id)
+			$!type.name
+		#end
+	#end
+#end
+
+#macro ( textFormat  $string $name)
+	#set($longStr="")
+	#set($longStr=$!string.trim().replaceAll("\r\n", "<br/>"))
+#end
