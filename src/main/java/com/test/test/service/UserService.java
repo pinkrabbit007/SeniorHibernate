@@ -1,12 +1,5 @@
 package com.test.test.service;
 
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Query;
-
-import org.hibernate.internal.CriteriaImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,17 +12,17 @@ public class UserService {
 	
 	@Autowired
 	UserDao userDao;
-	 
+	 	 
 	@Transactional
 	public void insert(User user) {
 		userDao.save(user); 
 	}
 
 	public User search(String userName) {
-		return userDao.findOneByUserName(userName);
+		return userDao.findOneByUsername(userName); 
 	} 
 	
-	public Iterable<User> searchall()
+	/*public Iterable<User> searchall()
 	{
 		return userDao.findAll();
 	}
@@ -44,11 +37,11 @@ public class UserService {
 		 return userDao.exists(a);//exist的参数为什么是long？
 	}
 	
-/*	public Iterable<User> selecttime(String starttime,String endtime)
+	public Iterable<User> selecttime(String starttime,String endtime)
 	{ 
 		//select * from table1 where field1 > 2011-4-25 and field1<2011-5-31
 	//	userDao.findAll(arg0)
-	}*/
+	}
 	
 	 public List<User> queryBySql(String sql) {    
 		 
@@ -74,6 +67,6 @@ public class UserService {
     
     public EntityManager getSession() {    
         return entityManagerFactory.createEntityManager();   
-    }    	
+    }  */  	
 	     
 }

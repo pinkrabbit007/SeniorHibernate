@@ -40,7 +40,7 @@ import com.test.test.dao.UserDao;
 @EnableScheduling
 @EnableWebMvc
 @PropertySource("classpath:demo.properties")
-@EnableJpaRepositories(basePackageClasses = { UserDao.class })
+@EnableJpaRepositories(basePackageClasses = {UserDao.class}) //使 Spring识别出需要为其实现的持久层接口
 @EnableTransactionManagement
 public class ApplicationConfig extends WebMvcConfigurerAdapter {
 

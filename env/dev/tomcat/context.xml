@@ -2,7 +2,7 @@
 <Context>
 
 	<Resource name="jdbc/demo" auth="Container" type="javax.sql.DataSource"
-		username="root" password="123456"
+  		username="root" password="123456"
 		url="jdbc:mysql://192.168.2.65/demodb?characterEncoding=UTF-8"
 		driverClassName="com.mysql.jdbc.Driver" maxWait="5000" maxActive="5"
 		maxIdle="1" validationQuery="select 1 from dual"

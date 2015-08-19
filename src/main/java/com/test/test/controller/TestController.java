@@ -1,9 +1,5 @@
 package com.test.test.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +14,8 @@ import com.test.test.service.UserService;
 @Controller
 @RequestMapping("/test.do")
 public class TestController {
-	 private static final Logger logger = LoggerFactory.getLogger(TestController.class);
-
+	private static final Logger logger = LoggerFactory
+			.getLogger(TestController.class);
 	@Autowired
 	UserService userService;
 
@@ -30,26 +26,21 @@ public class TestController {
 		ModelAndView mav = new ModelAndView("index");
 
 		User user = new User();
-		user.setUserName("李四");
+		user.setUsername("段誉");
 		user.setPassword("0000");
-
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		String formattedDate = formatter.format(new Date());
-		user.setRegisterTime(formattedDate);
 
 		userService.insert(user);
 
 		user = userService.search("张俊俏2");// 这步如果搜不到的话，连test.do?act=test都打不开呢
 		System.out.println(user.toString());
-
+/*
 		String sql = "select * from User";
 		List<User> list = userService.queryBySql(sql);
 		System.out.println("---" + list.size());
 		for (Object u : list) {
 			System.out.println(u + "=============");
 		}
-
-		mav.addObject("info", "asdfasdf");
+		mav.addObject("info", "asdfasdf");*/
 		return mav;
 	}
 }
