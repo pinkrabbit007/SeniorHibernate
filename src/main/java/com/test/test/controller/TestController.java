@@ -1,5 +1,7 @@
 package com.test.test.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.test.test.domain.LicencePlate;
 import com.test.test.domain.User;
 import com.test.test.service.UserService;
 
@@ -26,21 +29,39 @@ public class TestController {
 		ModelAndView mav = new ModelAndView("index");
 
 		User user = new User();
-		user.setUsername("段誉");
+		LicencePlate licplate = new LicencePlate();
+		user.setUsername("张伟4");
 		user.setPassword("0000");
+		user.setPhonenum("13735593160");
+		user.setIDcard("330726198907280000");
 
-		userService.insert(user);
+		licplate.setLicencePlateNum("浙A88888");
+		licplate.setCarID("3F4K6F8H9D0R13K");
+		// user.addLicPlate(licplate);//为什么加了这行就报错？
+		licplate.setUser(user);
+		userService.insertUserandLicPlate(user, licplate);
 
-		user = userService.search("张俊俏2");// 这步如果搜不到的话，连test.do?act=test都打不开呢
-		System.out.println(user.toString());
-/*
-		String sql = "select * from User";
-		List<User> list = userService.queryBySql(sql);
-		System.out.println("---" + list.size());
-		for (Object u : list) {
-			System.out.println(u + "=============");
-		}
-		mav.addObject("info", "asdfasdf");*/
+		/*
+		 * licplate = userService.findOneByLicencePlateNum("浙A77777");//
+		 * 这步如果搜不到的话，连test.do?act=test都打不开呢
+		 * System.out.println("车主姓名为"+licplate.getUser().getUsername());
+		 */
+
+/*		Long it = new Long(1);    //删除一个号牌
+	    userService.deleteOneByLicencePlateNum(it);*/
+
+		List<LicencePlate> l = null;
+
+		/*l = userService.findOneByUser(user);
+
+		if (!l.isEmpty()) {
+			for (LicencePlate u : l) {
+				System.out.println(u.getLicencePlateNum());
+			}
+		} else
+			System.out.println("Nobody is found");*/
+
+		// mav.addObject("name",licplate.getUser().getUsername());
 		return mav;
 	}
 }

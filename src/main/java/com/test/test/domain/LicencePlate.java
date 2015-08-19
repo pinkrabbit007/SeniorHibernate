@@ -19,9 +19,19 @@ public class LicencePlate {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id_licenceplate;
+	private Long id_licenceplate;
 
 	private String licencePlateNum;
+
+	private String carID;
+
+	public String getCarID() {
+		return carID;
+	}
+
+	public void setCarID(String carID) {
+		this.carID = carID;
+	}
 
 	@ManyToOne
 	@JoinColumn(name = "userid")
@@ -35,11 +45,11 @@ public class LicencePlate {
 		this.user = user;
 	}
 
-	public int getId_licenceplate() {
+	public Long getId_licenceplate() {
 		return id_licenceplate;
 	}
 
-	public void setId_licenceplate(int id_licenceplate) {
+	public void setId_licenceplate(Long id_licenceplate) {
 		this.id_licenceplate = id_licenceplate;
 	}
 

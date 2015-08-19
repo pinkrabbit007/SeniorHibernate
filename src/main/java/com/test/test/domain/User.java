@@ -2,13 +2,12 @@ package com.test.test.domain;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -32,10 +31,9 @@ public class User {
 	private String IDcard;
 	private String granted;
  
-	
-	@OneToMany(mappedBy = "user")
+    //mappedBy表示关系统被维护端，它的值是关系维护端维护关系的属性  
+	@OneToMany(fetch=FetchType.EAGER,mappedBy = "user")//这步很重要，对应的是多表的user列，这里不是列名而是属性名
 	private List<LicencePlate> licPlate;
-
 
 	/**
 	 *  
@@ -106,13 +104,7 @@ public class User {
 		this.granted = granted;
 	}
 
-	/*
-	 * public Set<LicencePlate> getLicencePlate() { return licencePlate; }
-	 * 
-	 * public void setLicencePlate(Set<LicencePlate> licencePlate) {
-	 * this.licencePlate = licencePlate; }
-	 */
-
+	 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
