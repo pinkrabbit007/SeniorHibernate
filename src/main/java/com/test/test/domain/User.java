@@ -31,10 +31,17 @@ public class User {
 	private String IDcard;
 	private String granted;
  
+	
+	
+	
     //mappedBy表示关系统被维护端，它的值是关系维护端维护关系的属性  
 	@OneToMany(fetch=FetchType.EAGER,mappedBy = "user")//这步很重要，对应的是多表的user列，这里不是列名而是属性名
 	private List<LicencePlate> licPlate;
 
+	
+	
+	
+	
 	/**
 	 *  
 	 * @param 手动构造添加车牌的方法

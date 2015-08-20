@@ -27,41 +27,113 @@ public class TestController {
 	public ModelAndView testPage() {
 
 		ModelAndView mav = new ModelAndView("index");
+		// mav.addObject("name",licplate.getUser().getUsername());
+		initialization(); 
+		return mav;
+	}
 
+	public void initialization() {
+		userService.deleteall();
 		User user = new User();
-		LicencePlate licplate = new LicencePlate();
-		user.setUsername("张伟4");
+		user.setUsername("张伟");
 		user.setPassword("0000");
 		user.setPhonenum("13735593160");
 		user.setIDcard("330726198907280000");
 
-		licplate.setLicencePlateNum("浙A88888");
+		LicencePlate licplate = new LicencePlate();
+		licplate.setLicencePlateNum("浙A00001");
 		licplate.setCarID("3F4K6F8H9D0R13K");
-		// user.addLicPlate(licplate);//为什么加了这行就报错？
 		licplate.setUser(user);
+
+		LicencePlate licplate2 = new LicencePlate();
+		licplate2.setLicencePlateNum("浙A00002");
+		licplate2.setCarID("0F4K678H9S0R68K");
+		licplate2.setUser(user);
+
 		userService.insertUserandLicPlate(user, licplate);
+		userService.insertUserandLicPlateagain(user, licplate2);
 
-		/*
-		 * licplate = userService.findOneByLicencePlateNum("浙A77777");//
-		 * 这步如果搜不到的话，连test.do?act=test都打不开呢
-		 * System.out.println("车主姓名为"+licplate.getUser().getUsername());
-		 */
+		User user_2 = new User();
+		user_2.setUsername("张伟2");
+		user_2.setPassword("1111");
+		user_2.setPhonenum("13735593160");
+		user_2.setIDcard("330726198907280002");
+		LicencePlate licplate_3 = new LicencePlate();
+		licplate_3.setLicencePlateNum("浙A00003");
+		licplate_3.setCarID("3A4U8F8Y9DDR13K");
+		licplate_3.setUser(user_2);
 
-/*		Long it = new Long(1);    //删除一个号牌
-	    userService.deleteOneByLicencePlateNum(it);*/
+		userService.insertUserandLicPlate(user_2, licplate_3);
 
-		List<LicencePlate> l = null;
+		User user_3 = new User();
+		user_3.setUsername("张伟3");
+		user_3.setPassword("3333");
+		user_3.setPhonenum("13735593132");
+		user_3.setIDcard("330726198907000002");
+		LicencePlate licplate_4 = new LicencePlate();
+		licplate_4.setLicencePlateNum("浙A00004");
+		licplate_4.setCarID("6A4W8F8D9VB413M");
 
-		/*l = userService.findOneByUser(user);
+		licplate_4.setUser(user_3);
+		licplate_4.setUser(user_3);
+
+		userService.insertUserandLicPlate(user_3, licplate_4);
+	}
+
+	/**
+	 * 已经有一块牌照了，又加一块牌照
+	 */
+	public void addnewnumtoAuser() {
+		User temp = userService.search("张伟3");
+		LicencePlate licplate = new LicencePlate();
+		licplate.setLicencePlateNum("浙A00005");
+		licplate.setCarID("3F4K6F8H9D0R13K");
+		licplate.setUser(temp);
+		userService.insertUserandLicPlateagain(temp, licplate);
+	}
+
+	/**
+	 * 更新用户姓名
+	 */
+	public void updateUsername() {
+		userService.updateUsername("张伟3", "李玮峰");
+	}
+
+	/**
+	 * 通过车主查询其名下车牌
+	 */
+	public void findallnumofAuser() {
+		List<LicencePlate> l = userService.findLicPlateByUser("张伟");
 
 		if (!l.isEmpty()) {
 			for (LicencePlate u : l) {
-				System.out.println(u.getLicencePlateNum());
+				System.out.println("查到号牌了，他们分别是" + u.getLicencePlateNum());
 			}
-		} else
-			System.out.println("Nobody is found");*/
+		}
+	}
 
-		// mav.addObject("name",licplate.getUser().getUsername());
-		return mav;
+	/**
+	 * 通过车牌查询车主名
+	 */
+	public void finduserbyNum() {
+		System.out
+				.println("牌照浙A00002的车主是"
+						+ userService.findOneByLicencePlateNum("浙A00002")
+								.getUsername());
+	}
+
+	/**
+	 * 删除一个号牌
+	 */
+	public void deleteAnum() {
+		Long it = new Long(1); // 删除一个号牌
+		userService.deleteOneByLicencePlateNum(it);
+	}
+	/**
+	 * 更改车牌号
+	 */
+	public void updateAnum()
+	{
+		userService.updateLicPlate("张伟", "浙A00002","沪B00008");
 	}
 }

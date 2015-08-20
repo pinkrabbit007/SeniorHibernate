@@ -33,10 +33,18 @@ public class LicencePlate {
 		this.carID = carID;
 	}
 
+	
+	
+	
+	
 	@ManyToOne
 	@JoinColumn(name = "userid")
 	private User user;
 
+	
+	
+	
+	
 	public User getUser() {
 		return user;
 	}

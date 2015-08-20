@@ -16,6 +16,5 @@ import com.test.test.domain.User;
  */
 
 public interface UserDao extends PagingAndSortingRepository<User, Long> {
-	public User findOneByUsername(String username); 
-	//public List<LicencePlate> findByUsername(String username);
+	public User findOneByUsername(String username);  
 }
