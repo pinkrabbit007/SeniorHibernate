@@ -1,13 +1,45 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-<form id="form1" action="login.do" method="post">
 
-	username:<input type="text" name="username" />
-	<p>
-	password:<input type="password" name="password" />
-	<p>
-		<input type="submit" value="查询" />
+<p>
+<p>
+<p>
+<p>
+
+<form id="form1" name="form1" action="test.do?act=initial" method="post">
+	<input type="submit" value="初始化数据库" />
+</form>
+<p>
+<form id="form2" name="form2" method="post"
+	action="test.do?act=changename">
+	<input type="submit" value="改名字" />
+</form>
+<p>
+<form id="form3" name="form3" method="post"
+	action="test.do?act=addlicplates">
+	<input type="submit" value="给张伟3加一块牌照" />
+</form>
+<p>
+<form id="form4" name="form4" method="post"
+	action="test.do?act=findallnumofAuser">
+	<input type="submit" value="查询其名下车牌" />
+</form>
+<p>
+<form id="form5" name="form5" method="post"
+	action="test.do?act=finduserbyNum">
+	<input type="submit" value="通过车牌查询车主名" />
+</form>
+<p>
+<!-- <form id="form6" name="form6" method="post"
+	action="test.do?act=deleteAnum">
+	<input type="submit" value="删除一个号牌" />
+</form>
+<p> -->
+<form id="form7" name="form7" method="post"
+	action="test.do?act=updateAnum">
+	<input type="submit" value="更改车牌号" />
 </form>
 
-<form id="form2" name="register" method="post" action="register.do">
-	<input type="submit" value="申请" />
-</form>
+
+
+
+

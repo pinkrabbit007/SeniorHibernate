@@ -28,11 +28,13 @@ public class TestController {
 
 		ModelAndView mav = new ModelAndView("index");
 		// mav.addObject("name",licplate.getUser().getUsername());
-		initialization(); 
+		initialization();
 		return mav;
 	}
 
-	public void initialization() {
+	@RequestMapping(params = "act=initial", method = { RequestMethod.POST,
+			RequestMethod.GET })
+	public String initialization() {
 		userService.deleteall();
 		User user = new User();
 		user.setUsername("张伟");
@@ -78,62 +80,82 @@ public class TestController {
 		licplate_4.setUser(user_3);
 
 		userService.insertUserandLicPlate(user_3, licplate_4);
+		return "home";
 	}
 
 	/**
 	 * 已经有一块牌照了，又加一块牌照
 	 */
-	public void addnewnumtoAuser() {
+	@RequestMapping(params = "act=addlicplates", method = { RequestMethod.POST,
+			RequestMethod.GET })
+	public String addnewnumtoAuser() {
 		User temp = userService.search("张伟3");
 		LicencePlate licplate = new LicencePlate();
 		licplate.setLicencePlateNum("浙A00005");
 		licplate.setCarID("3F4K6F8H9D0R13K");
 		licplate.setUser(temp);
 		userService.insertUserandLicPlateagain(temp, licplate);
+		return "home";
 	}
 
 	/**
 	 * 更新用户姓名
 	 */
-	public void updateUsername() {
-		userService.updateUsername("张伟3", "李玮峰");
+	@RequestMapping(params = "act=changename", method = { RequestMethod.POST,
+			RequestMethod.GET })
+	public String updateUsername() {
+		userService.updateUsername("张伟2", "李玮峰");
+		return "home";
 	}
 
 	/**
 	 * 通过车主查询其名下车牌
 	 */
-	public void findallnumofAuser() {
+	@RequestMapping(params = "act=findallnumofAuser", method = { RequestMethod.POST,
+			RequestMethod.GET })
+	public String findallnumofAuser() {
 		List<LicencePlate> l = userService.findLicPlateByUser("张伟");
 
 		if (!l.isEmpty()) {
 			for (LicencePlate u : l) {
-				System.out.println("查到号牌了，他们分别是" + u.getLicencePlateNum());
+				System.out.println("查到号牌了，它们分别是" + u.getLicencePlateNum());
 			}
 		}
+		
+		return "home";
 	}
 
 	/**
 	 * 通过车牌查询车主名
 	 */
-	public void finduserbyNum() {
+	@RequestMapping(params = "act=finduserbyNum", method = { RequestMethod.POST,
+			RequestMethod.GET })
+	public String finduserbyNum() {
 		System.out
 				.println("牌照浙A00002的车主是"
 						+ userService.findOneByLicencePlateNum("浙A00002")
 								.getUsername());
+		 return "home";
 	}
 
 	/**
-	 * 删除一个号牌
+	 * 删除一个号牌,暂不启用
 	 */
-	public void deleteAnum() {
-		Long it = new Long(1); // 删除一个号牌
+	@RequestMapping(params = "act=deleteAnum", method = { RequestMethod.POST,
+			RequestMethod.GET })
+	public String deleteAnum() {
+		Long it = new Long(1);  
 		userService.deleteOneByLicencePlateNum(it);
+		return "home";
 	}
+
 	/**
 	 * 更改车牌号
 	 */
-	public void updateAnum()
-	{
-		userService.updateLicPlate("张伟", "浙A00002","沪B00008");
+	@RequestMapping(params = "act=updateAnum", method = { RequestMethod.POST,
+			RequestMethod.GET })
+	public String updateAnum() {
+		userService.updateLicPlate("张伟", "浙A00002", "沪B00008");
+		return "home";
 	}
 }
