@@ -111,8 +111,8 @@ public class TestController {
 	/**
 	 * 通过车主查询其名下车牌
 	 */
-	@RequestMapping(params = "act=findallnumofAuser", method = { RequestMethod.POST,
-			RequestMethod.GET })
+	@RequestMapping(params = "act=findallnumofAuser", method = {
+			RequestMethod.POST, RequestMethod.GET })
 	public String findallnumofAuser() {
 		List<LicencePlate> l = userService.findLicPlateByUser("张伟");
 
@@ -121,21 +121,21 @@ public class TestController {
 				System.out.println("查到号牌了，它们分别是" + u.getLicencePlateNum());
 			}
 		}
-		
+
 		return "home";
 	}
 
 	/**
 	 * 通过车牌查询车主名
 	 */
-	@RequestMapping(params = "act=finduserbyNum", method = { RequestMethod.POST,
-			RequestMethod.GET })
+	@RequestMapping(params = "act=finduserbyNum", method = {
+			RequestMethod.POST, RequestMethod.GET })
 	public String finduserbyNum() {
 		System.out
 				.println("牌照浙A00002的车主是"
 						+ userService.findOneByLicencePlateNum("浙A00002")
 								.getUsername());
-		 return "home";
+		return "home";
 	}
 
 	/**
@@ -144,7 +144,7 @@ public class TestController {
 	@RequestMapping(params = "act=deleteAnum", method = { RequestMethod.POST,
 			RequestMethod.GET })
 	public String deleteAnum() {
-		Long it = new Long(1);  
+		Long it = new Long(1);
 		userService.deleteOneByLicencePlateNum(it);
 		return "home";
 	}
