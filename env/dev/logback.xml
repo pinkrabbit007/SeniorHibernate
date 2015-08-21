@@ -3,7 +3,7 @@
 	xsi:noNamespaceSchemaLocation="logback.xsd">
 
 	<appender name="file" class="ch.qos.logback.core.FileAppender">
-		<file>${catalina.base}/log/authencore.log</file>
+		<file>${catalina.base}/log/zhangjunqiaoJAVA.log</file>
 
 		<encoder>
 			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} -
@@ -11,7 +11,7 @@
 		</encoder>
 
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${catalina.base}/log/authencore.%d{yyyy-MM-dd}.log
+			<fileNamePattern>${catalina.base}/log/zhangjunqiaoJAVA.%d{yyyy-MM-dd}.log
 			</fileNamePattern>
 			<maxIndex>10</maxIndex>
 		</rollingPolicy>
@@ -22,7 +22,7 @@
 	<logger name="org.hibernate" level="WARN" />
 	<logger name="org.apache.http" level="WARN" />
 
-	<logger name="org.springframework.data" level="WARN" />
+	<logger name="org.springframework.data" level="INFO" />
 
 	<root level="INFO">
 		<appender-ref ref="file" />
