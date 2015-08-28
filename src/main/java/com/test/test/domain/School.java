@@ -12,7 +12,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "zjq5_School")
-
 public class School {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,10 +22,9 @@ public class School {
 	@JoinColumn(name = "school_id")
 	private List<Student> Student;
 
-	/*
+	@OneToMany
 	@JoinColumn(name = "school_id")
-	private List<StudentIDCard> StudentIDCard_id;*/
-	
+	private List<StudentIDCard> StudentIDCard_id;
 
 	public Long getId() {
 		return id;
@@ -51,13 +49,13 @@ public class School {
 	public void setStudent(List<Student> student) {
 		Student = student;
 	}
-	
-/*	public List<StudentIDCard> getStudentIDCard_id() {
-		return StudentIDCard_id;
-	}
 
-	public void setStudentIDCard_id(List<StudentIDCard> studentIDCard_id) {
-		StudentIDCard_id = studentIDCard_id;
-	}*/
+	/*
+	 * public List<StudentIDCard> getStudentIDCard_id() { return
+	 * StudentIDCard_id; }
+	 * 
+	 * public void setStudentIDCard_id(List<StudentIDCard> studentIDCard_id) {
+	 * StudentIDCard_id = studentIDCard_id; }
+	 */
 
 }

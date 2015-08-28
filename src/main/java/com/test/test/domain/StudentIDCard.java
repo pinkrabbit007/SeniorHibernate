@@ -22,9 +22,9 @@ public class StudentIDCard {
 	private Long students_id;
  
 	
-	/*
+	
 	@Column(name = "school_id")
-	private Long school_id;*/
+	private Long school_id;
 	
 	
 
@@ -54,12 +54,12 @@ public class StudentIDCard {
 		this.students_id = students_id;
 	}
 
-/*	public Long getSchool_id() {
+	public Long getSchool_id() {
 		return school_id;
 	}
 
 	public void setSchool_id(Long school_id) {
 		this.school_id = school_id;
-	}*/
+	}
  
 }

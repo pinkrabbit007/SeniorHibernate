@@ -35,7 +35,6 @@ public class Student {
 	@JoinColumn(name = "stu_id")
 	private List<StudentIDCard> cardId;
 
- 
 	public String getName() {
 		return name;
 	}
