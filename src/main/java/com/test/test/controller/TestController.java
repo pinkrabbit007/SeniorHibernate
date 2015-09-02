@@ -1,6 +1,9 @@
 package com.test.test.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,13 +25,45 @@ public class TestController {
 	@Autowired
 	UserService userService;
 
+	@Autowired
+	HttpServletRequest request;
+
+	/*
+	 * @Autowired HttpServletResponse response;
+	 */
+
 	@RequestMapping(params = "act=test", method = { RequestMethod.POST,
 			RequestMethod.GET })
 	public ModelAndView testPage() {
 
 		ModelAndView mav = new ModelAndView("index");
-		// mav.addObject("name",licplate.getUser().getUsername());
 		initialization();
+		return mav;
+	}
+
+	/**
+	 * @date 2015-09-01
+	 * @aim 为了学习http session
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 */
+	@RequestMapping(params = "act=test2", method = { RequestMethod.POST,
+			RequestMethod.GET })
+	public ModelAndView RequestandResponse(HttpServletRequest request2)
+			throws UnsupportedEncodingException {
+
+		ModelAndView mav = new ModelAndView("index");
+
+		boolean isGet = request.getMethod().toLowerCase().equals("get");
+		request.setCharacterEncoding("UTF-8");
+		if (isGet) {
+			System.out.println(request + "   " + request.getRequestURI()
+					+ "   " + request.getMethod() + "   "
+					+ request.getLocalAddr() + "   "
+					+ request.getParameterNames().toString());
+		} else {
+			System.out.println("failed");
+		}
 		return mav;
 	}
 
