@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.test.test.domain.LicencePlate;
 import com.test.test.domain.User;
+import com.test.test.service.Connecticut;
 import com.test.test.service.UserService;
 
 @Controller
@@ -28,10 +29,15 @@ public class TestController {
 	@Autowired
 	HttpServletRequest request;
 
-	/*
-	 * @Autowired HttpServletResponse response;
+	
+/*	 @Autowired 
+	 HttpServletResponse response;
 	 */
 
+	@Autowired
+	Connecticut connecticut;
+	
+	
 	@RequestMapping(params = "act=test", method = { RequestMethod.POST,
 			RequestMethod.GET })
 	public ModelAndView testPage() {
@@ -53,7 +59,12 @@ public class TestController {
 			throws UnsupportedEncodingException {
 
 		ModelAndView mav = new ModelAndView("index");
-
+		
+		int randomid=(int)(Math.random()*100);
+		connecticut.setId(randomid);
+		System.out.println("randomid is "+randomid);
+		connecticut.setName("act=test2");
+		
 		boolean isGet = request.getMethod().toLowerCase().equals("get");
 		request.setCharacterEncoding("UTF-8");
 		if (isGet) {
