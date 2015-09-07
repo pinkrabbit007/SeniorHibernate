@@ -30,6 +30,7 @@
 		<servlet-name>spring</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>servlet_1</servlet-name>
 		<servlet-class>com.test.test.util.Servlet_1</servlet-class>
@@ -39,6 +40,15 @@
 		<url-pattern>*.helloservlet</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>servlet_2</servlet-name>
+		<servlet-class>com.test.test.util.Servlet_2</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>servlet_2</servlet-name>
+		<url-pattern>*.uploadservlet</url-pattern>
+	</servlet-mapping>
+	
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
