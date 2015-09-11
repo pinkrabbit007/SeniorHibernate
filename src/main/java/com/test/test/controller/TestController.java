@@ -1,9 +1,12 @@
 package com.test.test.controller;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,18 +29,16 @@ public class TestController {
 	@Autowired
 	UserService userService;
 
-	@Autowired
-	HttpServletRequest request;
-
-	
-/*	 @Autowired 
-	 HttpServletResponse response;
+	/*
+	 * @Autowired HttpServletRequest request;
+	 */
+	/*
+	 * @Autowired HttpServletResponse response;
 	 */
 
 	@Autowired
 	Connecticut connecticut;
-	
-	
+
 	@RequestMapping(params = "act=test", method = { RequestMethod.POST,
 			RequestMethod.GET })
 	public ModelAndView testPage() {
@@ -55,16 +56,16 @@ public class TestController {
 	 */
 	@RequestMapping(params = "act=test2", method = { RequestMethod.POST,
 			RequestMethod.GET })
-	public ModelAndView RequestandResponse(HttpServletRequest request2)
-			throws UnsupportedEncodingException {
+	public ModelAndView RequestandResponse(HttpServletRequest request,
+			HttpServletResponse response) throws UnsupportedEncodingException {
 
 		ModelAndView mav = new ModelAndView("index");
-		
-		int randomid=(int)(Math.random()*100);
+
+		int randomid = (int) (Math.random() * 100);
 		connecticut.setId(randomid);
-		System.out.println("randomid is "+randomid);
+		System.out.println("randomid is " + randomid);
 		connecticut.setName("act=test2");
-		
+
 		boolean isGet = request.getMethod().toLowerCase().equals("get");
 		request.setCharacterEncoding("UTF-8");
 		if (isGet) {
@@ -75,6 +76,37 @@ public class TestController {
 		} else {
 			System.out.println("failed");
 		}
+		return mav;
+	}
+
+	/**
+	 * @throws IOException
+	 * @date 2015-09-11
+	 * @aim 熟悉request和response
+	 * @web 
+	 *      http://localhost:8080/seniorhibernate/test.do?act=test3&act2=test2&act3
+	 *      =test
+	 */
+	@RequestMapping(params = "act=test3", method = { RequestMethod.POST,
+			RequestMethod.GET })
+	public ModelAndView RequestandResponse2(HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+
+		ModelAndView mav = new ModelAndView("index");
+
+		boolean isGet = request.getMethod().toLowerCase().equals("get");
+		request.setCharacterEncoding("UTF-8");
+		if (isGet) {
+			System.out.println(request.getRequestURI()); 
+			System.out.println(request.getParameter("act"));
+			System.out.println(request.getParameter("act2"));
+		} else {
+			System.out.println("failed");
+		}
+  
+		response.setHeader("Content-type","text/html;charset=UTF-8");
+		response.getWriter().write("你好，浙大");
+		response.getWriter().close();
 		return mav;
 	}
 
