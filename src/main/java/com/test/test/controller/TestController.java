@@ -1,8 +1,11 @@
 package com.test.test.controller;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -97,14 +100,14 @@ public class TestController {
 		boolean isGet = request.getMethod().toLowerCase().equals("get");
 		request.setCharacterEncoding("UTF-8");
 		if (isGet) {
-			System.out.println(request.getRequestURI()); 
+			System.out.println(request.getRequestURI());
 			System.out.println(request.getParameter("act"));
 			System.out.println(request.getParameter("act2"));
 		} else {
 			System.out.println("failed");
 		}
-  
-		response.setHeader("Content-type","text/html;charset=UTF-8");
+
+		response.setHeader("Content-type", "text/html;charset=UTF-8");
 		response.getWriter().write("你好，浙大");
 		response.getWriter().close();
 		return mav;
